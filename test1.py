@@ -18,8 +18,8 @@ class MinimalPublisher(Node):
 
     def timer_callback(self):
         vel = Twist()
-        vel.linear.x = -2.0 #self.msg[0]
-        vel.linear.y = 2.0 #self.msg[1]
+        vel.linear.x = self.msg[0]
+        vel.linear.y = self.msg[1]
         self.publisher_.publish(vel)
         self.get_logger().info('Publishing: "%s"' % vel)
         self.i += 1

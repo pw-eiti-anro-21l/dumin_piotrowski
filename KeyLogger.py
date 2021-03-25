@@ -16,10 +16,12 @@ class KeyLogger(Node):
         ch.data = ord(key.char)
         self.publisher_press.publish(ch)
 
+
     def on_release(self, key):
         ch = Char()
         ch.data = ord(key.char)
         self.publisher_release.publish(ch)
+
         if key == Key.esc:
             # Stop listener
             return False
