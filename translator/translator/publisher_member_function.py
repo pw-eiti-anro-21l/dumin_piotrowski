@@ -24,27 +24,47 @@ class MinimalPublisher(Node):
     def __init__(self):
         super().__init__('minimal_publisher')
         self.publisher_ = self.create_publisher(Twist, '/turtle1/cmd_vel', 10)
-        self.subscription = self.create_subscription(Char, '/keylogger/press', self.listener_callback, 10)
-        timer_period = 0.5  # seconds
+        self.subscription = self.create_subscription(Char, '/keylogger/press', self.listener_callback_press, 10)
+        self.subscription = self.create_subscription(Char, '/keylogger/release', self.listener_callback_release, 10)
+        timer_period = 0.1  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
-        self.subscription
+        self.msg = Twist()
+
         self.i = 0
 
-    def listener_callback(self, msg):                                          
-        self.on_press(mgs.data)                                     
-        self.publisher_.publish(msg)
-        self.get_logger().info('Publishing: "%s"' % msg.data)
+    def timer_callback(self):
+
+        self.publisher_.publish(self.msg)
+        #self.get_logger().info('Publishing: "%s"' % vel)
         self.i += 1
+
+    def listener_callback_press(self, msg):
+        self.on_press(msg.data)
+
+
+    def listener_callback_release(self, msg):
+        self.on_release(msg.data)
+
         
     def on_press(self, key):
-        if char(key.data) == 'w':
-            self.msg[1] = 2.0
-        elif char(key.data) == 'a':
-            self.msg[0] = -2.0
-        elif char(key.data) == 's':
-            self.msg[1] = -2.0
-        elif char(key.data) == 'd':
-            self.msg[0] = 2.0
+        if chr(key) == 'w':
+            self.msg.linear.x = 2.0
+        elif chr(key) == 'a':
+            self.msg.angular.z = 0.8
+        elif chr(key) == 's':
+            self.msg.linear.x = -2.0
+        elif chr(key) == 'd':
+            self.msg.angular.z = -0.8
+
+    def on_release(self, key):
+        if chr(key) == 'w':
+            self.msg.linear.x = 0.0
+        elif chr(key) == 'a':
+            self.msg.angular.z = 0.0
+        elif chr(key) == 's':
+            self.msg.linear.x = 0.0
+        elif chr(key) == 'd':
+            self.msg.angular.z = 0.0
 
 
 def main(args=None):
