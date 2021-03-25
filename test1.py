@@ -9,7 +9,7 @@ class MinimalPublisher(Node):
 
     def __init__(self,):
         super().__init__('minimal_publisher')
-        self.publisher_ = self.create_publisher(Twist, '/turtle1/cmd_vel', 1)
+        self.publisher_ = self.create_publisher(Twist, '/turtle1/cmd_vel', 10)
         timer_period = 0.5  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
         manager = Manager()
@@ -18,8 +18,8 @@ class MinimalPublisher(Node):
 
     def timer_callback(self):
         vel = Twist()
-        vel.linear.x = self.msg[0]
-        vel.linear.y = self.msg[1]
+        vel.linear.x = -2.0 #self.msg[0]
+        vel.linear.y = 2.0 #self.msg[1]
         self.publisher_.publish(vel)
         self.get_logger().info('Publishing: "%s"' % vel)
         self.i += 1
@@ -55,11 +55,11 @@ class MinimalPublisher(Node):
             listener.join()
 
 def run_spin(pub):
-    rclpy.spin("steering",executor=pub)
+    rclpy.spin(pub)
 
 def run_in_parallel(args=None):
     rclpy.init(args=args)
-    rclpy.create_node("steering")
+    #rclpy.create_node("steering")
     minimal_publisher = MinimalPublisher()
     p1 = Process(target=run_spin, args=(minimal_publisher,))
     p1.start()
