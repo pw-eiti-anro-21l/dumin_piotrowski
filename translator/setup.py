@@ -13,10 +13,10 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='medivh',
+    maintainer='Mateusz Dumin',
     maintainer_email='mateusz.dumin.stud@pw.edu.pl',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='Simple package for controlling turtlesim from keybord',
+    license='Apache License 2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [

@@ -3,9 +3,9 @@
 <package format="3">
   <name>translator</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="mateusz.dumin.stud@pw.edu.pl">medivh</maintainer>
-  <license>TODO: License declaration</license>
+  <description>Simple package for controlling turtlesim from keybord</description>
+  <maintainer email="mateusz.dumin.stud@pw.edu.pl">Mateusz Dumin</maintainer>
+  <license>Apache License 2.0</license>
   
   <exec_depend>rclpy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
