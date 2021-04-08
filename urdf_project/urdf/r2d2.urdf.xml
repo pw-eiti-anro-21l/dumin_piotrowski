@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<robot name="myfirst">
+
+   <material name="blue">
+     <color rgba="0 0 0.8 1"/>
+   </material>
+ 
+   <material name="white">
+     <color rgba="1 1 1 1"/>
+   </material>
+
+   <material name="black">
+     <color rgba="0 0 0 1"/>
+   </material>
+
+   <material name="red">
+     <color rgba="0.8 0 0 1"/>
+   </material>
+
+   <link name="base_link">
+     <visual>
+       <geometry>
+         <cylinder length="1.0" radius="0.4"/>
+       </geometry>
+       <origin rpy="0 0 0" xyz="0 0 0.5"/>
+       <material name="blue"/>
+     </visual>
+   </link>
+
+   <link name="arm3">
+     <visual>
+       <geometry>
+         <box size="1.0 0.2 0.2"/>
+       </geometry>
+       <origin rpy="1.57075 0 0" xyz="0.5 0 0"/>
+       <material name="white"/>
+     </visual>
+   </link>
+  
+    <joint name="base_to_arm3" type = "fixed">
+      <parent link="base_link"/>
+      <child link="arm3"/>
+      <origin xyz="0 0 1"/>
+    </joint>
+    
+    <link name="arm2">
+      <visual>
+        <geometry>
+          <box size="1.0 0.2 0.2"/>
+        </geometry>
+        <origin rpy="0 0 1.57075" xyz="0 0 0"/>
+        <material name="white"/>
+      </visual>
+    </link>
+
+    <joint name="arm3_to_arm2" type = "fixed">
+      <parent link="arm3"/>
+      <child link="arm2"/>
+      <origin xyz="1 0 0"/>
+    </joint>
+
+    <link name="arm1">
+      <visual>
+        <geometry>
+          <box size="1.0 0.2 0.2"/>
+        </geometry>
+        <origin rpy="0 1.57075 1.57075" xyz="0 0 0"/>
+        <material name="white"/>
+      </visual>
+    </link>
+
+    <joint name="arm2_to_arm1" type = "fixed">
+      <parent link="arm2"/>
+      <child link="arm1"/>
+      <origin xyz="0 0.5 0"/>
+    </joint>
+
+</robot>
+									
