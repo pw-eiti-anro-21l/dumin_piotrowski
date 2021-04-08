@@ -35,6 +35,7 @@ class KeyLogger(Node):
 def main(args=None):
     rclpy.init(args=args)
     log = KeyLogger()
+    rclpy.spin(log)
     log.run_getch()
     log.destroy_node()
     rclpy.shutdown()
