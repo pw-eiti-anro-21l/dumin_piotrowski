@@ -38,7 +38,7 @@
    <link name="arm3">
      <visual>
        <geometry>
-         <box size="0.2 0.2 1.0"/>
+         <box size="0.1 0.1 1.1"/>
        </geometry>
        <origin rpy="0 0 0" xyz="0 0 -0.5"/>
        <material name="white"/>
@@ -50,12 +50,13 @@
       <child link="arm3"/>
       <origin xyz="0 0 0.5" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
+      <limit upper="0.5" lower="-0.5" effort="0" velocity="0.2"/>
     </joint>
     
     <link name="arm2">
       <visual>
         <geometry>
-          <box size="0.2 0.2 1.0"/>
+          <box size="0.1 0.1 1.1"/>
         </geometry>
         <origin rpy="0 0 0" xyz="0 0 0.5"/>
         <material name="white"/>
@@ -67,12 +68,13 @@
       <child link="arm2"/>
       <origin xyz="0 0.5 0" rpy="1.5708 -1.5708 0"/>
       <axis xyz="0 0 1"/>
+      <limit upper="0.5" lower="-0.5" effort="0" velocity="0.2"/>
     </joint>
 
     <link name="arm1">
       <visual>
         <geometry>
-          <box size="0.2 0.2 1.0"/>
+          <box size="0.1 0.1 1.1"/>
         </geometry>
         <origin rpy="0 0 0" xyz="0 0 0.5"/>
         <material name="white"/>
@@ -84,6 +86,7 @@
       <child link="arm1"/>
       <origin xyz="0 0.5 0" rpy="1.5708 -1.5708 0"/>
       <axis xyz="0 0 1"/>
+      <limit upper="0.5" lower="-0.5" effort="0" velocity="0.2"/>
     </joint>
 
 </robot>
