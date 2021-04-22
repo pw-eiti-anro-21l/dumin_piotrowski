@@ -26,6 +26,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+        	'state_publisher = urdf_project.state_publisher:main'
         ],
     },
 )

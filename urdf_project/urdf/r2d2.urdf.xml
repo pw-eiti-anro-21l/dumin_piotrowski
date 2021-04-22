@@ -37,7 +37,7 @@
      </visual>
    </link>
   
-    <joint name="base_to_arm3" type = "fixed">
+    <joint name="base_to_arm3" type = "Prismatic">
       <parent link="base_link"/>
       <child link="arm3"/>
       <origin xyz="0 0 1"/>
@@ -53,7 +53,7 @@
       </visual>
     </link>
 
-    <joint name="arm3_to_arm2" type = "fixed">
+    <joint name="arm3_to_arm2" type = "Prismatic">
       <parent link="arm3"/>
       <child link="arm2"/>
       <origin xyz="1 0 0"/>
@@ -69,7 +69,7 @@
       </visual>
     </link>
 
-    <joint name="arm2_to_arm1" type = "fixed">
+    <joint name="arm2_to_arm1" type = "Prismatic">
       <parent link="arm2"/>
       <child link="arm1"/>
       <origin xyz="0 0.5 0"/>
