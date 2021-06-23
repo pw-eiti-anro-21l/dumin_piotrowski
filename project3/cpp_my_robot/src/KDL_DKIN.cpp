@@ -24,7 +24,7 @@ class PredictedPositionNode : public rclcpp::Node
       subscription_ = this->create_subscription<sensor_msgs::msg::JointState>(
       "joint_states", 10, std::bind(&PredictedPositionNode::topic_callback, this, _1));
 
-      publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("manipulator_tip_position", 10);
+      publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("manipulator_tip_position_KDL", 10);
       urdf_setup("install/cpp_my_robot/share/cpp_my_robot/my_robot.urdf.xml");
      }
 
@@ -113,57 +113,3 @@ int main(int argc, char * argv[])
   rclcpp::shutdown();
    return 0;
 }
-
-
-
-
-
-// // #include <kdl/chain.hpp>
-// // #include <kdl/chainfksolver.hpp>
-// // #include <kdl/chainfksolverpos_recursive.hpp>
-// // #include <kdl/frames_io.hpp>
-// // #include <stdio.h>
-// // #include <iostream>
-
-// // using namespace KDL;
- 
- 
-// // int main( int argc, char** argv )
-// // {
-// //     //Definition of a kinematic chain & add segments to the chain
-// //     KDL::Chain chain;
-// //     chain.addSegment(Segment(Joint(Joint::RotZ),Frame(Vector(0.0,0.0,1.020))));
-// //     chain.addSegment(Segment(Joint(Joint::RotX),Frame(Vector(0.0,0.0,0.480))));
-// //     chain.addSegment(Segment(Joint(Joint::RotX),Frame(Vector(0.0,0.0,0.645))));
-// //     chain.addSegment(Segment(Joint(Joint::RotZ)));
-// //     chain.addSegment(Segment(Joint(Joint::RotX),Frame(Vector(0.0,0.0,0.120))));
-// //     chain.addSegment(Segment(Joint(Joint::RotZ)));
- 
-// //     // Create solver based on kinematic chain
-// //     ChainFkSolverPos_recursive fksolver = ChainFkSolverPos_recursive(chain);
- 
-// //     // Create joint array
-// //     unsigned int nj = chain.getNrOfJoints();
-// //     KDL::JntArray jointpositions = JntArray(nj);
- 
-// //     // Assign some values to the joint positions
-// //     for(unsigned int i=0;i<nj;i++){
-// //         float myinput;
-// //         printf ("Enter the position of joint %i: ",i);
-// //         scanf ("%e",&myinput);
-// //         jointpositions(i)=(double)myinput;
-// //     }
- 
-// //     // Create the frame that will contain the results
-// //     KDL::Frame cartpos;    
- 
-// //     // Calculate forward position kinematics
-// //     bool kinematics_status;
-// //     kinematics_status = fksolver.JntToCart(jointpositions,cartpos);
-// //     if(kinematics_status>=0){
-// //         std::cout << cartpos <<std::endl;
-// //         printf("%s \n","Succes, thanks KDL!");
-// //     }else{
-// //         printf("%s \n","Error: could not calculate forward kinematics :(");
-// //     }
-// // }

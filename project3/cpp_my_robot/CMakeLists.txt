@@ -39,13 +39,9 @@ ament_target_dependencies(KDL_DKIN urdf)
 ament_target_dependencies(KDL_DKIN geometry_msgs)
 ament_target_dependencies(KDL_DKIN sensor_msgs)
 
-add_executable(cpp_test src/cpp_test.cpp)
-ament_target_dependencies(cpp_test rclcpp)
-
 # Install Cpp executables
 install(TARGETS
   KDL_DKIN
-  cpp_test
   DESTINATION lib/${PROJECT_NAME}
   )
 
