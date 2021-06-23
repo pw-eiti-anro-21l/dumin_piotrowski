@@ -93,7 +93,7 @@ void PredictedPositionNode::calculate_new_position(const sensor_msgs::msg::Joint
       Position.set__header(tipheader);
       
   }else{
-      printf("%s \n","Error: could not calculate forward kinematics :(");
+      RCLCPP_ERROR(get_logger(), "Error: could not calculate forward kinematics");
   }
 }
 
