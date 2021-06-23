@@ -18,19 +18,34 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(orocos_kdl REQUIRED)
+find_package(kdl_parser)
 find_package(ament_cmake_python REQUIRED)
 find_package(rclpy REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(urdf REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 
 # Include Cpp "include" directory
-include_directories(include)                
+include_directories(include)
+            
 
 # Create Cpp executable                    
 add_executable(KDL_DKIN src/KDL_DKIN.cpp)
 ament_target_dependencies(KDL_DKIN orocos_kdl)
+ament_target_dependencies(KDL_DKIN rclcpp)
+ament_target_dependencies(KDL_DKIN kdl_parser)
+ament_target_dependencies(KDL_DKIN urdf)
+ament_target_dependencies(KDL_DKIN geometry_msgs)
+ament_target_dependencies(KDL_DKIN sensor_msgs)
+
+add_executable(cpp_test src/cpp_test.cpp)
+ament_target_dependencies(cpp_test rclcpp)
 
 # Install Cpp executables
 install(TARGETS
   KDL_DKIN
+  cpp_test
   DESTINATION lib/${PROJECT_NAME}
   )
 
@@ -51,6 +66,7 @@ install(FILES
   
   # install the launch directory
 install(FILES
+	launch/my_robot.launch.py
   launch/my_robot_KDL.launch.py
   launch/my_robot_NONKDL.launch.py
   DESTINATION share/${PROJECT_NAME}/
@@ -68,3 +84,4 @@ if(BUILD_TESTING)
 endif()
 
 ament_package()
+
