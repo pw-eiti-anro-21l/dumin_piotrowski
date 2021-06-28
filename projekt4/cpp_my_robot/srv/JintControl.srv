@@ -1,0 +1,7 @@
+float64[] start_joint_position
+float64[] end_joint_position
+float64 movement_time
+string interpolation_type
+---
+bool valid_data
+string message
